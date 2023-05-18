@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Inventario</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<header th:replace="plantillas/plantilla :: header"/>
+
+	<div class="container text-center">
+		<div>
+			<h1>Bienvenid@ a la aplicaión de Inventario</h1>
+		</div>
+		<br/>
+		<div class="p-2">
+			<a class="h2" th:href="@{/categorias}">Lista de categorias</a>
+		</div>
+		<div class="p-2">
+			<a class="h2" th:href="@{/categorias/nuevaCat}">Agregar categoria</a>
+		</div>
+		<br/>
+		<div class="p-2">
+			<a class="h2" th:href="@{/productos}">Lista de productos</a>
+		</div>
+		<div class="p-2">
+			<a class="h2" th:href="@{/productos/nuevoProd}">Agregar productos</a>
+		</div>
+	</div>
+
+<footer th:replace="plantillas/plantilla :: footer" />
+</body>
+</html>

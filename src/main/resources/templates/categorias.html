@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Inventario</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<header th:replace="plantillas/plantilla :: header"/>
+
+
+
+	<div class="container text-center">
+		<div>
+			<h1>Lista de categorias</h1>
+		</div>
+		<br />
+		<div>
+			<table class="table table-dark table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">NOMBRE CATEGORIA</th>
+						<th scope="col">EDITAR</th>
+						<th scope="col">ELIMINAR</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each= "categoria : ${categorias}">
+						<td th:text="${categoria.id}">ID</td>
+						<td th:text="${categoria.nombre}">NOMBRE</td>
+						<td><a th:href="@{/categorias/editarForm(id=${categoria.id})}" class="btn btn-info">EDITAR</a></td>
+						<td><a th:href="@{categorias/eliminar/} + ${categoria.id}" class="btn btn-danger">ELIMINAR</a></td>
+					<tr/>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<footer th:replace="plantillas/plantilla :: footer" />
+</body>
+</html>

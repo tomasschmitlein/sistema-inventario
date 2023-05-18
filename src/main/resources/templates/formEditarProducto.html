@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Inventario</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+
+
+	 <header th:replace="plantillas/plantilla :: header"/>
+
+
+
+	<div class="container text-center">
+		<div>
+			<h1>Editar categoria</h1>
+		</div>
+		<div>
+			<form th:action="@{/productos/guardarProducto}"
+				th:object="${producto}" method="POST"
+				style="max-width: 600px; margin: 0 auto;">
+				<div class="m-3">
+					<input type="hidden" name="id" th:field="*{id}" /> <br />
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Nombre de producto</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{nombre}" class="form-control"
+								required placeholder="Inserte el nombre.." />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Precio:</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{precio}" class="form-control"
+								required placeholder="Inserte el precio.." />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Inserte la
+							categoria que esta asociada</label>
+						<div class="col-sm-8">
+							<select th:field="*{categoria}" class="form-control" required>
+								<th:block th:each="categoria : ${categorias}">
+									<option th:text="${categoria.nombre}"
+										th:value="${categoria.id}"></option>
+								</th:block>
+							</select>
+						</div>
+					</div>
+					<div class="text-center p">
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:href="@{/productos}" class="btn btn-primary">Volver</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	
+
+<footer th:replace="plantillas/plantilla :: footer" />
+</body>
+</html>
