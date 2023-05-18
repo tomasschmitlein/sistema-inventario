@@ -11,25 +11,13 @@
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" th:href="@{/inicio}">Sistema de Control</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" th:href="@{/inicio}">Inicio</a></li>
-			</ul>
-		</div>
-	</nav>
-
+	<header th:replace="plantillas/plantilla :: header"/>
 
 
 	<div class="container text-center">
 		<div>
-			<h1>Agregar nueva categoria</h1>
+			<h1 th:if="${categoria.id == null}">Agregar nueva categoria</h1>
+			<h1 th:unless="${categoria.id == null}">Editar categoria</h1>
 		</div>
 		<div>
 			<form th:action="@{/categorias/guardarCategoria}" th:object="${categoria}" method="POST" style="max-width:600px; margin:0 auto;">
@@ -42,12 +30,14 @@
 					</div>
 					<div class="text-center p">
 						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:unless="${categoria.id == null}" th:href="@{/categorias}" class="btn btn-primary">Volver</a>
+						<a th:if="${categoria.id == null}" th:href="@{/inicio}" class="btn btn-primary">Volver</a>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 
-
+<footer th:replace="plantillas/plantilla :: footer" />
 </body>
 </html>

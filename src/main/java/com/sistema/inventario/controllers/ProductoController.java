@@ -42,7 +42,7 @@ public class ProductoController {
 
 		modelo.addAttribute("categorias", categorias);
 
-		return "formEditarProducto";
+		return "formAgregarProducto";
 	}
 
 	@GetMapping("/productos/nuevoProd")
@@ -60,7 +60,7 @@ public class ProductoController {
 	}
 
 	@GetMapping("/productos/eliminar/{id}")
-	public String eliminarProducto(@PathVariable Integer id, Model modelo) {
+	public String eliminarProducto(@PathVariable("id") Integer id, Model modelo) {
 
 		Producto producto = pService.eliminarProducto(id);
 

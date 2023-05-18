@@ -11,6 +11,33 @@ public class Categoria {
 
 	@Column(length = 45, nullable = false, unique = true)
 	private String nombre;
+	
+	@ManyToOne
+	@JoinColumn(name = "marca_id")
+	private Marca marca;
+
+	
+	
+	public Categoria(String nombre, Marca marca) {
+		super();
+		this.nombre = nombre;
+		this.marca = marca;
+	}
+
+	public Categoria(Integer id, String nombre, Marca marca) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.marca = marca;
+	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
 
 	public Integer getId() {
 		return id;
@@ -50,7 +77,7 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nombre=" + nombre + "]";
+		return "Categoria [id=" + id + ", nombre=" + nombre + ", marca=" + marca + "]";
 	}
 
 }

@@ -69,7 +69,7 @@ public class CategoriaController {
 		
 		modelo.addAttribute("categoria", categoria);
 		
-		return "formEditarCat";
+		return "formAgregarCategoria";
 	}
 	
 	/*

@@ -15,7 +15,8 @@
 
 	<div class="container text-center">
 		<div>
-			<h1>Agregar nuevo producto</h1>
+			<h1 th:if="${producto.id == null}">Agregar nuevo producto</h1>
+			<h1 th:unless="${producto.id == null}">Editar producto</h1>
 		</div>
 		<div>
 			<form th:action="@{/productos/guardarProducto}"
@@ -49,6 +50,8 @@
 					</div>
 					<div class="text-center p">
 						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a th:unless="${producto.id == null}" th:href="@{/productos}" class="btn btn-primary">Volver</a>
+						<a th:if="${producto.id == null}" th:href="@{/inicio}" class="btn btn-primary">Volver</a>
 					</div>
 				</div>
 			</form>
