@@ -22,7 +22,7 @@ public class MarcaServiceImpl implements MarcaService{
 	private CategoriaDAO catDAO;
 	
 	@Override
-	public Marca crearProducto(Marca marca) {
+	public Marca crearMarca(Marca marca) {
 		
 		marca = marcaDAO.save(marca);
 		
@@ -30,7 +30,7 @@ public class MarcaServiceImpl implements MarcaService{
 	}
 
 	@Override
-	public List<Marca> obtenerTodosLosProductos() {
+	public List<Marca> obtenerTodosLasMarcas() {
 		
 		List<Marca> marcas = marcaDAO.findAll();
 		
@@ -48,7 +48,7 @@ public class MarcaServiceImpl implements MarcaService{
 	}
 
 	@Override
-	public Marca eliminarProducto(long id) {
+	public Marca eliminarMarca(long id) {
 		
 		Marca marca = marcaDAO.findById(id).orElseThrow(null);
 		
@@ -58,7 +58,7 @@ public class MarcaServiceImpl implements MarcaService{
 	}
 
 	@Override
-	public Marca actualizarProducto(Marca marca, long id) {
+	public Marca actualizarMarca(Marca marca, long id) {
 		
 		Marca marca2 = marcaDAO.findById(id).orElseThrow(null);
 		

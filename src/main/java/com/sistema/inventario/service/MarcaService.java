@@ -6,15 +6,15 @@ import com.sistema.inventario.entidades.Marca;
 
 public interface MarcaService {
 
-	public Marca crearProducto(Marca marca);
+	public Marca crearMarca(Marca marca);
     
-    public List<Marca> obtenerTodosLosProductos();
+    public List<Marca> obtenerTodosLasMarcas();
     
     public Marca findById(long id);
     
-    public Marca eliminarProducto(long id);
+    public Marca eliminarMarca(long id);
     
-    public Marca actualizarProducto(Marca marca, long id);
+    public Marca actualizarMarca(Marca marca, long id);
 
 	
 }

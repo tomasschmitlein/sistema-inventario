@@ -49,7 +49,7 @@ public class Marca {
 
 	@Override
 	public String toString() {
-		return "Marca [id=" + id + ", nombre=" + nombre + ", categorias=" + categorias + "]";
+		return nombre;
 	}
 
 	public Long getId() {

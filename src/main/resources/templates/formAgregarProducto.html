@@ -22,6 +22,7 @@
 			<form th:action="@{/productos/guardarProducto}"
 				th:object="${producto}" method="POST"
 				style="max-width: 600px; margin: 0 auto;">
+				<input type="hidden" th:field="*{id}" th:value="${producto.id}"/>
 				<div class="m-3">
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Nombre del producto</label>

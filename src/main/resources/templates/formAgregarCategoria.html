@@ -21,6 +21,7 @@
 		</div>
 		<div>
 			<form th:action="@{/categorias/guardarCategoria}" th:object="${categoria}" method="POST" style="max-width:600px; margin:0 auto;">
+				<input type="hidden" th:field="*{id}" th:value="${categoria.id}" />
 				<div class="m-3">
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Nombre de categoria</label>
