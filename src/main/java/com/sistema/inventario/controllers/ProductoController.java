@@ -1,5 +1,6 @@
 package com.sistema.inventario.controllers;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.*;
@@ -11,6 +12,8 @@ import com.sistema.inventario.DAO.CategoriaDAO;
 import com.sistema.inventario.entidades.Categoria;
 import com.sistema.inventario.entidades.Producto;
 import com.sistema.inventario.service.ProductoService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProductoController {
@@ -70,8 +73,27 @@ public class ProductoController {
 	}
 
 	@PostMapping("/productos/guardarProducto")
-	public String guardarProducto(Model modelo, Producto nuevoProd) {
+	public String guardarProducto(Model modelo, Producto nuevoProd, HttpServletRequest request) {
 
+		//obtenemos los valores de los input del front, del form "agregarProducto", getparameterValues nos permite obtener los datos de una peticion get
+		
+		String[] detallesIDs = request.getParameterValues("detallesIDs");
+		String[] detallesNombres = request.getParameterValues("detallesNombre");
+		String[] detallesValores = request.getParameterValues("detallesValores");
+		
+		for(int i = 0; i< detallesNombres.length; i++) {
+			
+			//en caso que existan ya detalles
+			if(detallesIDs != null && detallesIDs.length > 0) {
+				
+				nuevoProd.setDetalle(Integer.valueOf(detallesIDs[i]), detallesNombres[i], detallesValores[i]);
+				
+			}else { //si es un nuevo detalle
+				nuevoProd.guardarDetalles(detallesNombres[i], detallesValores[i]);
+			}
+			
+		}
+		
 		nuevoProd = pService.crearProducto(nuevoProd);
 
 		modelo.addAttribute("nuevoProducto", nuevoProd);

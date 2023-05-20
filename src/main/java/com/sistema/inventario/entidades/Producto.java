@@ -1,5 +1,7 @@
 package com.sistema.inventario.entidades;
 
+import java.util.*;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,8 +21,28 @@ public class Producto {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
+	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+	private List<ProductoDetalles> detalles = new ArrayList<>();
+
+	public void guardarDetalles(String nombre, String valor) {
+
+		this.detalles.add(new ProductoDetalles(nombre, valor, this));
+
+	}
 	
 	
+
+	public Producto(Long id, String nombre, Float precio, Categoria categoria, List<ProductoDetalles> detalles) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.categoria = categoria;
+		this.detalles = detalles;
+	}
+
+
+
 	public Producto(String nombre) {
 		super();
 		this.nombre = nombre;
@@ -77,9 +99,22 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
+	public List<ProductoDetalles> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<ProductoDetalles> detalles) {
+		this.detalles = detalles;
+	}
+
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
+	}
+
+	public void setDetalle(Integer id, String nombre, String valor) {
+		this.detalles.add(new ProductoDetalles(Long.valueOf(id.longValue()), nombre, valor, this));
+		
 	}
 
 }
