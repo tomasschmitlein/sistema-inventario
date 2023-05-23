@@ -40,7 +40,7 @@ public class UsuariosController {
 		List<Rol> listaRol = rolService.obtenerTodosLosRoles();
 
 		modelo.addAttribute("listaRoles", listaRol);
-		modelo.addAttribute("usuario", new Usuario());
+		modelo.addAttribute("usuario", new Usuario());//le mando un usuario al form html para poder asignarle el nombre, rol, etc a este usuario y luego persistirlo 
 
 		return "formAgregarUsuario";
 	}
