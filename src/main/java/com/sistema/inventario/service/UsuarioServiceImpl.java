@@ -3,11 +3,16 @@ package com.sistema.inventario.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sistema.inventario.DAO.UsuarioDAO;
 import com.sistema.inventario.entidades.Marca;
+import com.sistema.inventario.entidades.Rol;
 import com.sistema.inventario.entidades.Usuario;
 
+@Service
+@Transactional
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
@@ -56,6 +61,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 		userDAO.save(usuario2);
 
 		return usuario2;
+	}
+
+	@Override
+	public Usuario asignarRol(Usuario usuario, Rol rol) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

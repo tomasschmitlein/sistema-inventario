@@ -2,6 +2,7 @@ package com.sistema.inventario.service;
 
 import java.util.List;
 
+import com.sistema.inventario.entidades.Rol;
 import com.sistema.inventario.entidades.Usuario;
 
 public interface UsuarioService {
@@ -16,4 +17,5 @@ public interface UsuarioService {
 
 	public Usuario actualizarUsuario(Usuario usuario, long id);
 
+	public Usuario asignarRol(Usuario usuario, Rol rol);
 }

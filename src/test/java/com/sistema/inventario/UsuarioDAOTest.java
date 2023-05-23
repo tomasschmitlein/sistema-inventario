@@ -76,4 +76,44 @@ public class UsuarioDAOTest {
 		userDAO.save(user3);
 	}
 	
+	@Test
+	public void testEliminarRolAUnUsuarioYaExistente() {
+		
+		Rol rolVisitante = entityManager.find(Rol.class, 3);
+		Usuario user3 = entityManager.find(Usuario.class, 1);
+		
+		user3.eliminarRol(rolVisitante);
+
+		
+		userDAO.save(user3);
+	}
+	
+	
+	@Test
+	public void testCrearNuevoUsuarioConUnNuevoRol() {
+		
+		Rol rolManager = new Rol("MANAGER");	
+		Usuario user = new Usuario("pepe123rt", "test@test.com");
+	
+		user.agregarRol(rolManager);
+		userDAO.save(user);
+	}
+	
+	
+	@Test
+	public void testObtenerUsuario() {
+		Usuario user4 = entityManager.find(Usuario.class, 2);
+		entityManager.detach(user4);
+		
+		System.out.println(user4.getEmail());
+		System.out.println(user4.getRoles());
+	}
+	
+	@Test
+	public void testEliminarUsuario() {
+		Usuario user5 = entityManager.find(Usuario.class, 3);
+		
+		userDAO.deleteById(user5.getId());
+		
+	}
 }

@@ -3,8 +3,10 @@ package com.sistema.inventario.entidades;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +29,7 @@ public class Usuario {
 	@Column(length = 50, nullable = false, unique = true)
 	private String email;
 	
-	@ManyToMany
+	@ManyToMany//(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	//le paso el nombre de la tabla "usuario_rol" que va a estar unida a esta entidad por la columna "usuario_id", y con inversejoin hacemos referencia que la tabla "usuario_rol" va a estar unida a la tabla "rol" por la columna rol_id
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
 	private Set<Rol> roles = new HashSet<>();
@@ -63,6 +65,10 @@ public class Usuario {
 
 	public void agregarRol(Rol rol) {
 		this.roles.add(rol);
+	}
+	
+	public void eliminarRol(Rol rol) {
+		this.roles.remove(rol);
 	}
 	
 	public Long getId() {
